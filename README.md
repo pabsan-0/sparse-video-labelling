@@ -96,7 +96,7 @@ Pablo Santana -> `psantana@catec.aero`
 
 
 
-<!-->
+<!--
 
 - Video to images
 - Label images by hand -> labels
@@ -133,5 +133,5 @@ END LOOP
 - Remove images to save disk
 
 
-</-->
+-->
 
