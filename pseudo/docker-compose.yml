@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+    ultralytics:
+        image: ultralytics/ultralytics
+        container_name: ultralytics
+        shm_size: 64gb
+        tty: true
+        stdin_open: true
+        network_mode: host
+        working_dir: ~
+        volumes:
+            - $PWD/../frames:/frames       #? inputs
+            - $PWD/../labels:/labels       #? inputs
+            - $PWD/dataset:/dataset        #? inputs
+            - $PWD/models:/models          #= train ouput
+            - $PWD/detect:/detect          #! infer ouput 
+            - $PWD:/ws                       
+
+        runtime: nvidia
+        deploy:
+            resources:
+                reservations:
+                    devices:
+                        - driver: nvidia
+                          count: 1
+                          capabilities: [gpu]

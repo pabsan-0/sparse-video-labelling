@@ -1,0 +1,18 @@
+# Images
+*.png
+*.jpg
+*.jpeg
+*.bmp
+
+# Videos
+*.mp4
+
+# Labels ## You might wanna undo this
+*.txt
+
+# Weights & DL
+*.pt
+*.cache
+
+# Python venvs
+.venv*
