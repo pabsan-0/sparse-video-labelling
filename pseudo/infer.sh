@@ -1,7 +1,7 @@
 
 # Scan how many trains and saved models already exist
 PREDICT_IDX=$(ls runs/detect/ | grep predict | wc -l)
-if ((PREDICT_IDX == 1)); then
+if ((PREDICT_IDX == 0)); then
     PREDICT_IDX=""
 fi
 
@@ -23,7 +23,7 @@ yolo detect predict          \
 
 
 # Copy all detections to all dir
-cp runs/detect/predict$PREDICT_IDX /detect/all
+cp runs/detect/predict$PREDICT_IDX/labels/* /detect/all
 
 # Compare detections with old labels and have the new ones live in ./new
 cp /detect/all/*.txt /detect/new
