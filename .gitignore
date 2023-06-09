@@ -16,3 +16,6 @@
 
 # Python venvs
 .venv*
+
+# Documentation exceptions
+!.fig/*
