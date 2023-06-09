@@ -90,6 +90,55 @@ Assuming yours is a continuous video of a single moving object at a time, you ca
 - Label sensitive frames by hand
 
 
+## Thes scripts documented
+
+- `pseudo/macros.sh`: A little bash library with two functions
+    - `f_link_frames $fpath $lpath`: symlinks files in `$fpath` whose name matches with those in `$lpath` to `$lpath`, with extension tweaking
+    - `f_unlink_frames $path`: removes all symlinks in `$path`
+
+- `pseudo/train.sh`: Automates a fake dataset building and training of a yolov8n network.
+    - To be run exclusively within ultralytics docker.
+    - Starting checkpoint is fetched from `pseudo/models`
+    - Override by setting the env variable `MODEL=my/yolo/model.pt`
+    
+- `pseudo/infer.sh`: Automates inference of the images in `pseudo/detect/sources`
+    - To be run exclusively within ultralytics docker.
+    - Inference checkpoint is fetched from `pseudo/models`
+    - Override by setting the env variable `MODEL=my/yolo/model.pt`
+    - You must link the images into `pseudo/detect/sources` yourself
+    - Will store all detections to `pseudo/detect/all`
+    - Will automatically compare detections with `labels/` and copy purely new label files into `pseudo/detect/new`
+
+- `scripts/label_time_series.py`: Creates a X-Y-Area timeseries of labels.
+    ```
+    ## Docstring
+    usage: label_time_series.py [-h] [-d DIR] [-p PREFIX] [-s SUFFIX] [-e EXTENSION]
+    optional arguments:
+    -h, --help                           show this help message and exit
+    -d DIR, --dir DIR                    Path to the label-holding dir.
+    -p PREFIX, --prefix PREFIX           Prefix in <PREF>XXXX<SUF>.<EXT> . Default ""
+    -s SUFFIX, --suffix SUFFIX           Suffix in <PREF>XXXX<SUF>.<EXT> . Default ""
+    -e EXTENSION, --extension EXTENSION  Extension in <PREF>XXXX<SUF>.<EXT> . Default 'txt'
+
+    ## Example for video `f1c1.mp4` with labels as in `labels/f1c1_00001-demo.txt`
+    python3 label_time_series.py -d "labels/" -p "f1c1_" -s "-demo" -e "txt"
+    ```
+       
+- `scripts/video_to_frames.py`: Extracts the frames from a video file. Frames are numbered in absolute order in an integer-increasing count.
+    ```
+    ## Docstring
+    usage: video_to_frames.py [-h] [-i VIDEO_PATH] [-o IMAGE_PATH] [-p PREFIX] [-d DECIMATOR] [-s IMAGE_SIZE] [-f FIRST_FRAME] [-l LAST_FRAME]
+    optional arguments:
+    -h, --help                                  show this help message and exit
+    -i VIDEO_PATH, --video_path VIDEO_PATH      Path to the input video file
+    -o IMAGE_PATH, --image_path IMAGE_PATH      Path to image output dir
+    -p PREFIX, --prefix PREFIX                  Prefix for output image files
+    -d DECIMATOR, --decimator DECIMATOR         Save only one every _d_ frames
+    -s IMAGE_SIZE, --image_size IMAGE_SIZE      Output image square resolution
+    -f FIRST_FRAME, --first_frame FIRST_FRAME   First frame to store
+    -l LAST_FRAME, --last_frame LAST_FRAME      Last frame to store
+    ```
+    
 ## Contact
 
 Pablo Santana -> `psantana@catec.aero`

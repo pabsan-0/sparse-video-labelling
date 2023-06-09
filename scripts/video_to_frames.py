@@ -12,7 +12,7 @@ gets a video file and dumps each frame as a png picture in an output dir
 parser = argparse.ArgumentParser()
 
 parser.add_argument('-i','--video_path',  help="Path to the input video file",   type=str)
-parser.add_argument('-o','--image_path',  help="Path to image output dis",       type=str, default="./")
+parser.add_argument('-o','--image_path',  help="Path to image output dir",       type=str, default="./")
 parser.add_argument('-p','--prefix',      help="Prefix for output image files",  type=str, default="")
 parser.add_argument('-d','--decimator',   help="Save only one every _d_ frames", type=int, default=1)
 parser.add_argument('-s','--image_size',  help="Output image square resolution", type=int, default=1920)
