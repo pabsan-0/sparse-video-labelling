@@ -7,8 +7,9 @@
 # Videos
 *.mp4
 
-# Labels ## You might wanna undo this
+# Labels ## You might wanna undo this to keep track of labelling in your clone
 *.txt
+!classes.txt
 
 # Weights & DL
 *.pt

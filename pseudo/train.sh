@@ -1,7 +1,7 @@
 
 # Scan how many trains and saved models already exist
-TRAIN_IDX=$(( $(ls runs/detect/ | grep train | wc -l) ))
-if ((TRAIN_IDX == 1)); then
+TRAIN_IDX=$(( $(ls runs/detect/ | grep train | wc -l) )) ## this is wrong
+if ((TRAIN_IDX == 0)); then
     TRAIN_IDX=""
 fi
 
@@ -17,7 +17,7 @@ fi
 
 # Build dataset
 cp -t /dataset/train /labels/*
-mv -t /dataset/test $(find pseudo/dataset/train -type f | shuf -n 100)
+mv -t /dataset/test $(find pseudo/dataset/train -type f | shuf -n 200)
 
 source macros.sh  ## import f_unlink_frames, f_link_frames
 f_unlink_frames /dataset/train
