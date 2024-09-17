@@ -139,12 +139,6 @@ Assuming yours is a continuous video of a single moving object at a time, you ca
     -l LAST_FRAME, --last_frame LAST_FRAME      Last frame to store
     ```
     
-## Contact
-
-Pablo Santana -> `psantana@catec.aero`
-
-
-
 <!--
 
 - Video to images
